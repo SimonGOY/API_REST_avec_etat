@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API REST avec état", "API REST avec état\API REST avec état.csproj", "{3FEE3600-CD43-49C9-8974-B3D7A9881457}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FEE3600-CD43-49C9-8974-B3D7A9881457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FEE3600-CD43-49C9-8974-B3D7A9881457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FEE3600-CD43-49C9-8974-B3D7A9881457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FEE3600-CD43-49C9-8974-B3D7A9881457}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4456558D-5E59-400E-B610-8E2725E6E07A}
+	EndGlobalSection
+EndGlobal
