@@ -88,6 +88,65 @@ namespace API_REST_avec_état.Controllers.Tests
             Assert.IsInstanceOfType(result, typeof(NotFoundResult), "Un élément à été supprimé");
         }
 
+        [TestMethod()]
+        public void PostSerieTest_Ok()
+        {
+            // Arrange
+            Serie ajout = new Serie(999, "Test", "Cette série n'existe pas", 1, 1, 200, "TF1");
+
+            // Act 
+            var result = controller.PostSerie(ajout).Result;
+            var recherche = controller.GetSerie(999).Result;
+
+            //Arrange
+            Assert.IsInstanceOfType(result, result.GetType(), "Le type n'est pas bon");
+            Assert.IsNotNull(recherche.Value, "La série n'a pas été ajoutée");
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(System.AggregateException))]
+        public void PostSerieTest_NotOk()
+        {
+            // Arrange
+            Serie ajout = new Serie(1, "Test", "Cette série n'existe pas", 1, 1, 200, "TF1");
+
+            // Act 
+            var result = controller.PostSerie(ajout).Result;
+        }
+
+        [TestMethod()]
+        public void PutSerieTest_Ok()
+        {
+            // Arrange
+            string nouveau_nom = "Nouvelle Série";
+            Serie ajout = new Serie(1, nouveau_nom, "J.D. est un jeune médecin qui débute sa carrière dans l'hôpital du Sacré-Coeur. Il vit avec son meilleur ami Turk, qui lui est chirurgien dans le même hôpital. Très vite, Turk tombe amoureux d'une infirmière Carla. Elliot entre dans la bande. C'est une étudiante en médecine quelque peu surprenante. Le service de médecine est dirigé par l'excentrique Docteur Cox alors que l'hôpital est géré par le diabolique Docteur Kelso. A cela viennent s'ajouter plein de personnages hors du commun : Todd le chirurgien obsédé, Ted l'avocat dépressif, le concierge qui trouve toujours un moyen d'embêter JD... Une belle galerie de personnage !",
+                 9, 184, 2001, "ABC (US)");
+            
+            // Act
+            var resultat = controller.PutSerie(1, ajout).Result;
+            var recherche = controller.GetSerie(1).Result.Value.Titre;
+
+            //Assert
+            Assert.IsInstanceOfType(resultat, typeof(IActionResult), "La série n'a pas changé");
+            Assert.AreEqual(nouveau_nom, recherche, "Le nom n'a pas été modifié");
+
+        }
+
+        [TestMethod()]
+        public void PutSerieTest_NonOk()
+        {
+            // Arrange
+            Serie ajout = new Serie(2, null, "J.D. est un jeune médecin qui débute sa carrière dans l'hôpital du Sacré-Coeur. Il vit avec son meilleur ami Turk, qui lui est chirurgien dans le même hôpital. Très vite, Turk tombe amoureux d'une infirmière Carla. Elliot entre dans la bande. C'est une étudiante en médecine quelque peu surprenante. Le service de médecine est dirigé par l'excentrique Docteur Cox alors que l'hôpital est géré par le diabolique Docteur Kelso. A cela viennent s'ajouter plein de personnages hors du commun : Todd le chirurgien obsédé, Ted l'avocat dépressif, le concierge qui trouve toujours un moyen d'embêter JD... Une belle galerie de personnage !",
+                 9, 184, 2001, "ABC (US)");
+
+            // Act
+            var resultat = controller.PutSerie(1, ajout).Result;
+
+            // Arrang
+            Assert.IsInstanceOfType(resultat, typeof(BadRequestResult),"Le résultat n'est pas une BadRequest") ;
+
+        }
+
         [TestCleanup]
         public void CleanUp()
         {
@@ -98,8 +157,7 @@ namespace API_REST_avec_état.Controllers.Tests
                 9, 184, 2001, "ABC (US)");
                 controller.PostSerie(ajout);
             }
+            controller.DeleteSerie(999);
         }
-
-
     }
 }
