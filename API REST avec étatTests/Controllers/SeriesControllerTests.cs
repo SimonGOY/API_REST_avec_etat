@@ -16,8 +16,6 @@ namespace API_REST_avec_état.Controllers.Tests
     [TestClass()]
     public class SeriesControllerTests
     {
-        public SeriesController controller;
 
-        
     }
 }
