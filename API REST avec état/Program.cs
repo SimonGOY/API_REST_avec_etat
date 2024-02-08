@@ -1,6 +1,5 @@
 using API_REST_avec_état.Models.EntityFramework;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;;
 
 
 var builder = WebApplication.CreateBuilder(args);
